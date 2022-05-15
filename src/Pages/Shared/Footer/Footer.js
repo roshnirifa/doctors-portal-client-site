@@ -3,10 +3,12 @@ import footer from '../../../assets/images/footer.png'
 
 const Footer = () => {
     return (
-        <div className='px-12'>
-            <footer style={{
-                background: `url(${footer})`
-            }} class="footer p-10  text-gray ">
+        <div className='pb-6'>
+            <footer footer style={{
+                background: `url(${footer})`,
+                backgroundSize: "cover"
+            }
+            } class="footer p-24  text-base-content " >
                 <div >
                     <span class="footer-title">Services</span>
                     <a class="link link-hover" > Emergency Checkup</a >
@@ -26,7 +28,10 @@ const Footer = () => {
 
                 </div>
             </footer >
-        </div>
+            <div className='text-center'>
+                <small> Copyright 2022 All Rights Reserved</small>
+            </div>
+        </div >
     );
 };
 

@@ -17,6 +17,9 @@ const Contact = () => {
                     <input type="text" placeholder="Subject" class="input input-bordered w-full max-w-xs mb-3" /><br />
                     <textarea class="textarea w-full max-w-xs textarea-bordered pb-10" placeholder="Your Message"></textarea>
                 </div>
+                <div>
+                    <button className='btn btn-primary'>Submit</button>
+                </div>
             </div>
         </div>
     );
