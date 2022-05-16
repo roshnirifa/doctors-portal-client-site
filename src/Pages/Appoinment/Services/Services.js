@@ -1,5 +1,5 @@
 import React from 'react';
-import Service from '../Service/Service';
+import Service from '../../Home/Service/Service';
 import Fluoride from '../../../assets/images/fluoride.png'
 import Cavity from '../../../assets/images/cavity.png'
 import Whitening from '../../../assets/images/whitening.png'
