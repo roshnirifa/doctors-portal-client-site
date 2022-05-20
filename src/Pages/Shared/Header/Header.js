@@ -1,7 +1,16 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Button } from 'react-day-picker';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
+import auth from '../../../firebase_init';
+
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const logout = () => {
+        signOut(auth);
+    };
     const menuItems =
         <>
             <li><Link to='/home'>Home</Link></li>
@@ -9,8 +18,10 @@ const Header = () => {
             <li><Link to='/appointment'>Appointment</Link></li>
             <li><Link to='/reviews'>Reviews</Link></li>
             <li><Link to='/contact'>Contact us</Link></li>
-            <li><Link to='/login'>Login</Link></li>
+            <li>{user ? <button className='btn btn-ghost' onClick={logout}>Sign Out</button> :
+                <Link to='/login'>Login</Link>}</li>
         </>
+
     return (
         <div class="navbar bg-base-100">
             <div class="navbar-start">
