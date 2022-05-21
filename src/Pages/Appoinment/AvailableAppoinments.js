@@ -1,11 +1,14 @@
 import { format } from 'date-fns';
 import React, { useState, useEffect } from 'react';
 import Service from '../Service/Service';
+
 import BookingModal from './BookingModal';
+
 
 const AvailableAppoinments = ({ date }) => {
     const [services, setServices] = useState([]);
     const [treatment, setTreatment] = useState(null);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/service')
