@@ -15,9 +15,13 @@ const Header = () => {
         <>
             <li><Link to='/home'>Home</Link></li>
             <li><Link to='/appointment'>Appointment</Link></li>
+            {
+                user && <li><Link to='/dashboard'>Dashboard</Link></li>
+            }
             <li><Link to='/reviews'>Reviews</Link></li>
             <li><Link to='/about'>About</Link></li>
-            <li><Link to='/contact'>Contact us</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
+
             <li>{user ? <button className='btn btn-ghost' onClick={logout}>Sign Out</button> :
                 <Link to='/login'>Login</Link>}</li>
         </>
@@ -39,6 +43,13 @@ const Header = () => {
                 <ul class="menu menu-horizontal p-0">
                     {menuItems}
                 </ul>
+            </div>
+
+            <div className="navbar-end">
+                <label for="dashboard-sidebar" tabindex="1" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                </label>
+
             </div>
 
         </div>
