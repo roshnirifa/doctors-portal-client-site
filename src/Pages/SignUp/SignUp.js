@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSi
 import auth from '../../firebase_init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading/Loading';
+import useToken from '../Hooks/useToken';
 const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
@@ -13,11 +14,12 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [updateProfile, updating, updateeError] = useUpdateProfile(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useToken(user || gUser)
     const navigate = useNavigate()
 
     let signInError;
-    if (gError || error || updateeError) {
+    if (gError || error || updateError) {
         signInError = <p className='text-red-500'>
             {
                 error?.message
@@ -27,20 +29,15 @@ const SignUp = () => {
     if (gLoading || loading || updating) {
         return <Loading></Loading>;
     }
-    if (gUser) {
-        return (
-            <div>
-                <p>Signed In User: {gUser.email}</p>
-
-            </div>
-        );
+    if (token) {
+        navigate('/appointment')
     }
     const onSubmit = async data => {
         console.log(data);
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
         console.log("update done");
-        navigate('/appointment')
+
     };
     return (
         <div className='flex h-screen justify-center items-center' >
@@ -121,7 +118,7 @@ const SignUp = () => {
                             signInError
                         }
                         <input className='btn w-full max-w-xs' type="submit" value='Signup' />
-                        <p className='mt-3'>Already have an account? <span className='text-primary'><Link to='/signup'>Please Login</Link></span></p>
+                        <p className='mt-3'>Already have an account? <span className='text-primary'><Link to='/login'>Please Login</Link></span></p>
                     </form>
 
 
